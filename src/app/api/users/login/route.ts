@@ -18,7 +18,10 @@ export async function POST(request:NextRequest){
         }
         console.log("User Exists:",user);
 
+        console.log("password hash stored in db",user.password);
+
         const validPassword = await bcryptjs.compare(password,user.password);
+        console.log(validPassword);
 
         if(!validPassword){
             return NextResponse.json({error:"Invalid credentials"},{status:400})
@@ -40,7 +43,8 @@ export async function POST(request:NextRequest){
         response.cookies.set("token",token,{
             httpOnly:true
         })
-
+        console.log("response",response);
+        
         return response;
 
     } catch (error:any) {

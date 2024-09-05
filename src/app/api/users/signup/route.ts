@@ -21,11 +21,12 @@ export async function POST(request: NextRequest){
         
         const salt = await bcryptjs.genSalt(10);
         const hashedPasword = await bcryptjs.hash(password,salt);
-
+        console.log(hashedPasword);
+        
         const newUser = new User({
             username,
             email,
-            password
+            password:hashedPasword
         })
         
         const saveduser = await newUser.save();
