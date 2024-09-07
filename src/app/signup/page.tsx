@@ -19,6 +19,7 @@ export default function signupPage(){
   
   const onSign = async()=>{
     try {
+      setLoading(true)
       const response = await axios.post("/api/users/signup",user);
       router.push('/login');
     } catch (error:any) {
@@ -71,7 +72,7 @@ export default function signupPage(){
         onClick={onSign}
         style={{cursor:"pointer",border:"none"}}
         >
-          {buttondisabled?"Please fill the form ":"SignUp"}
+          {buttondisabled?"Please fill the form ":"Signup"}
         </button><br /><br/>
         <Link href="/login">Login Page</Link>
     </div>
